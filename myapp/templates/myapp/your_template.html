@@ -1,0 +1,71 @@
+<!-- your_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Offers</title>
+</head>
+<body>
+    <h1>Personalized Offers</h1>
+    
+    <form method="post" action="{% url 'predict_and_generate_offers' %}">
+        {% csrf_token %}
+        
+        <!-- Add input fields for user data -->
+        <label for="user_id">User ID:</label>
+        <input type="number" name="user_id" required>
+
+        <label for="recent_activities">Recent Activities:</label>
+        <input type="number" name="recent_activities" required>
+        
+        <label for="purchase_history">Purchase History:</label>
+        <input type="number" name="purchase_history" required>
+
+        <label for="account_type">Account Type:</label>
+        <input type="text" name="account_type" required>
+
+        <label for="money_on_account">Money on Account:</label>
+        <input type="number" name="money_on_account" required>
+
+        <label for="services_taken">Services Taken:</label>
+        <input type="text" name="services_taken" required>
+
+        <label for="age">Age:</label>
+        <input type="number" name="age" required>
+
+        <label for="monthly_income">Monthly Income:</label>
+        <input type="number" name="monthly_income" required>
+
+        <label for="credit_score">Credit Score:</label>
+        <input type="number" name="credit_score" required>
+
+        <label for="number_of_dependents">Number of Dependents:</label>
+        <input type="number" name="number_of_dependents" required>
+
+        <label for="education_level">Education Level:</label>
+        <input type="text" name="education_level" required>
+
+        <label for="gender">Gender:</label>
+        <select name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- Add other form fields as needed -->
+        
+        <button type="submit">Generate Offers</button>
+    </form>
+    {% if personalized_offers %}
+    <h2>Top 10 Personalized Offers:</h2>
+    <ul>
+        {% for offer in personalized_offers %}
+            <li>{{ offer }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} 
+
+</body>
+</html>
